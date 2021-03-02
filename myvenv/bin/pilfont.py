@@ -31,7 +31,7 @@ if len(sys.argv) <= 1:
 
 files = []
 for f in sys.argv[1:]:
-    files = files + glob.glob(f)
+    files += glob.glob(f)
 
 for f in files:
 

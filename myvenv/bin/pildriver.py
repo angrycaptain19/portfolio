@@ -156,9 +156,7 @@ class PILDriver:
         Merge top-of stack images in a way described by the mode.
         """
         mode = self.do_pop()
-        bandlist = []
-        for band in mode:
-            bandlist.append(self.do_pop())
+        bandlist = [self.do_pop() for band in mode]
         self.push(Image.merge(mode, bandlist))
 
     # Image class methods
@@ -490,10 +488,9 @@ class PILDriver:
             funcname = "do_" + top
             if not hasattr(self, funcname):
                 continue
-            else:
-                self.do_pop()
-                func = getattr(self, funcname)
-                func()
+            self.do_pop()
+            func = getattr(self, funcname)
+            func()
 
 if __name__ == '__main__':
     import sys

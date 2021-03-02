@@ -75,11 +75,7 @@ for file in argv:
             im.draft("L", im.size)
             im = im.convert("L")
 
-        if printer:
-            fp = os.popen(printer, "w")
-        else:
-            fp = sys.stdout
-
+        fp = os.popen(printer, "w") if printer else sys.stdout
         ps = PSDraw.PSDraw(fp)
 
         ps.begin_document()
